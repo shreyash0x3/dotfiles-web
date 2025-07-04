@@ -4,6 +4,7 @@ function Explore() {
     return (
         <>
             <Navbar />
+
         </>
     );
 }
