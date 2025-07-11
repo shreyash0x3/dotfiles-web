@@ -51,7 +51,7 @@ function Upload() {
 
             <div className="flex items-center justify-center mt-[3%]">
 
-                <div className="bg-[#4B454533] w-[1100px] h-[750] flex flex-col items-center justify-center rounded-md">
+                <div className="bg-[#4B454533] w-[1100px] flex flex-col items-center justify-center rounded-md">
 
                     <div className="bg-[#4B454566]  w-[1000px] h-[80px] flex flex-col justify-center items-center mt-[3%] border border-[#4B454566] mb-[3%] rounded-md">
 
