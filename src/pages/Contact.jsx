@@ -13,7 +13,7 @@ function Contact() {
 
                 <main className="flex-1">
                     <div class="flex items-center justify-center mt-[10%] ">
-                        <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-6">
 
                             <motion.button
                                 whileHover={{ scale: 1.1 }}

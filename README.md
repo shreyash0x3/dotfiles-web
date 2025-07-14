@@ -19,7 +19,8 @@ Upload screenshots of your riced desktop, add tags (like your window manager or 
 ## 🛠️ Built With
 
 - **React + Vite**
-- **Firebase (for image storage & hosting)**
+- **Firebase** for real-time user data storage
+- **Cloudinary** for external image hosting
 - **Framer Motion** for smooth UI animations
 - **TailwindCSS** for styling
 

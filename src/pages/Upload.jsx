@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { getFirestore, collection, addDoc, updateDoc } from "firebase/firestore";
-import { app } from "../firebase";
-
-const fireStore = getFirestore(app)
+import { collection, addDoc, updateDoc } from "firebase/firestore";
+import { fireStore } from "../firebase";
 
 function Upload() {
 
@@ -109,9 +107,9 @@ function Upload() {
 
             <div className="flex items-center justify-center mt-[3%]">
 
-                <div className="bg-[#4B454533] w-[1100px] flex flex-col items-center justify-center rounded-md">
+                <div className="bg-[#2A2A2E33] w-[1100px] flex flex-col items-center justify-center rounded-md text-[#D1D5DB]">
 
-                    <div className="bg-[#4B454566]  w-[1000px] h-[80px] flex flex-col justify-center items-center mt-[3%] border border-[#4B454566] mb-[3%] rounded-md">
+                    <div className="bg-[#1F1F2380]  w-[1000px] h-[80px] flex flex-col justify-center items-center mt-[3%] border border-[#D1D5DB33] mb-[3%] rounded-md">
 
                         <input id="imageUpload" type="file" multiple accept="image/*" className="hidden" onChange={handleImageUpload} required />
                         <label htmlFor="imageUpload" className="inter-bold text-[23px] hover:cursor-pointer">
@@ -133,23 +131,23 @@ function Upload() {
                             <div className="os & wm flex justify-between mb-[1%]">
                                 <div className="os">
                                     <label className="ml-[1%] text-[14px] inter-bold">Operating System :</label>
-                                    <input name="os" value={formData.os} onChange={handleChange} required className="w-full bg-[#4B454566] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" placeholder="eg. Arch Linux" />
+                                    <input name="os" value={formData.os} onChange={handleChange} required className="w-full bg-[#1F1F2380] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" placeholder="eg. Arch Linux" />
                                 </div>
                                 <div className="wm">
                                     <label className="ml-[1%] text-[14px] inter-bold">Windows Manager :</label>
-                                    <input name="wm" value={formData.wm} onChange={handleChange} required className="w-full bg-[#4B454566] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" placeholder="eg. Hyprland" />
+                                    <input name="wm" value={formData.wm} onChange={handleChange} required className="w-full bg-[#1F1F2380] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" placeholder="eg. Hyprland" />
                                 </div>
                             </div>
 
                             <div className="description mt-[2%] mb-[1%]">
                                 <label className="ml-[1%] text-[14px] inter-bold">Description :</label>
-                                <textarea name="description" value={formData.description} onChange={handleChange} required rows={5} className="w-full bg-[#4B454566] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" >
+                                <textarea name="description" value={formData.description} onChange={handleChange} required rows={5} className="w-full bg-[#1F1F2380] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" >
                                 </textarea>
                             </div>
 
                             <div className="github mt-[1%] mb-[3%]">
                                 <label className="ml-[1%] text-[14px] inter-bold">Github Repo Link :</label>
-                                <input name="github" value={formData.github} onChange={handleChange} required className="w-full bg-[#4B454566] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" placeholder="eg. link to your dotfiles repository" />
+                                <input name="github" value={formData.github} onChange={handleChange} required className="w-full bg-[#1F1F2380] pt-2 pb-2 pr-1 pl-3 rounded text-sm outline-none" placeholder="eg. link to your dotfiles repository" />
                             </div>
 
                             <div className="flex justify-center mb-[3%] mt-[3%]">
