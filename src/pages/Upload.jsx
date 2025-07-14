@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { image, li, span } from "framer-motion/client";
+import { getFirestore, collection, addDoc, updateDoc } from "firebase/firestore";
+import { app } from "../firebase";
+
+const fireStore = getFirestore(app)
 
 function Upload() {
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [images, setImages] = useState([]);
     const [formData, setFormData] = useState({
         os: "",
@@ -12,6 +16,7 @@ function Upload() {
         github: "",
     })
 
+    //putting images into an array
     const handleImageUpload = (e) => {
         const selectedFiles = Array.from(e.target.files);
 
@@ -23,16 +28,69 @@ function Upload() {
         setImages((prev) => [...prev, ...selectedFiles]);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         //whole form submit
-    }
+        e.preventDefault();
+        setIsSubmitting(true);
 
+
+        try {
+
+            //image upload to cloudinary and then get the url
+            //store those url in formData
+
+            const uploadImagesToCloudinary = async (images) => {
+                const uploadPromises = images.map(async (file) => {
+                    const data = new FormData();
+                    data.append("file", file);
+                    data.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+
+                    const res = await fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`, {
+                        method: "POST",
+                        body: data,
+                    });
+
+                    const json = await res.json();
+                    return json.secure_url;
+                });
+
+                const imageURLs = await Promise.all(uploadPromises);
+                return imageURLs;
+            };
+
+            const userDocRef = await addDoc(collection(fireStore, 'users'), {
+                os: formData.os,
+                wm: formData.wm,
+                description: formData.description,
+                github: formData.github,
+            });
+
+            const imageURLs = await uploadImagesToCloudinary(images);
+
+            await updateDoc(userDocRef, {
+                imageURLs: imageURLs,
+            });
+
+            alert("Upload Successful!!");
+            window.location.reload();
+        }
+        catch (err) {
+            console.error("Upload failed: ", err);
+            alert("Upload failed something went wrong during upload.")
+        }
+        finally {
+            setIsSubmitting(false);
+        }
+    };
+
+
+    //storing input fields data into formData
     const handleChange = (e) => {
-        //input field change to store in formData
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
+
     }
 
     const isFormValid = () => {
@@ -95,9 +153,13 @@ function Upload() {
                             </div>
 
                             <div className="flex justify-center mb-[3%] mt-[3%]">
-                                <button className={`px-5 py-1 rounded inter-bold cursor-pointer active:scale-95 ${isFormValid() ? "bg-[#3B82F6] text-white" : "bg-gray-500 text-gray-300 cursor-not-allowed"
-                                    }`}>
-                                    Upload
+                                <button
+                                    disabled={!isFormValid() || isSubmitting}
+                                    className={`px-5 py-1 rounded inter-bold cursor-pointer active:scale-95 transition-all duration-150 ${!isFormValid() || isSubmitting
+                                        ? "bg-gray-500 text-gray-300 cursor-not-allowed"
+                                        : "bg-[#3B82F6] text-white"}`}
+                                >
+                                    {isSubmitting ? "Uploading..." : "Upload"}
                                 </button>
                             </div>
                         </div>
@@ -106,7 +168,7 @@ function Upload() {
 
             </div>
         </>
-    ) 
+    )
 }
 
 

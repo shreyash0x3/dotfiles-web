@@ -1,8 +1,8 @@
-# dotfiles.in
+# dotfilesweb
 
 A simple site to explore, share, and flex your dotfiles.
 
-Upload screenshots of your riced desktop, add tags (like your window manager or OS), link your GitHub repo, and share your setup with the world. No bloat. Just configs that actually look good.
+Upload screenshots of your riced desktop, add tags (like your window manager or OS), link your GitHub repo, and share your setup. No bloat. Just configs that actually look good.
 
 ---
 
