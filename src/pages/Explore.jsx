@@ -10,7 +10,6 @@ function Explore() {
     const [copiedIndex, setCopiedIndex] = useState(null);
     const [imageIndexes, setImageIndexes] = useState({});
 
-    // Fetch users from Firestore
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(fireStore, "users"), (snapshot) => {
             const userList = snapshot.docs.map((doc) => ({
@@ -23,7 +22,6 @@ function Explore() {
         return () => unsubscribe();
     }, []);
 
-    // Auto-cycle images every 2 seconds
     useEffect(() => {
         const interval = setInterval(() => {
             setImageIndexes((prevIndexes) => {
@@ -52,40 +50,36 @@ function Explore() {
 
                     return (
                         <div key={user.id} className="bg-[#2A2A2E33] w-[750px] p-5 flex flex-col rounded-md text-[#D1D5DB] mb-[4%]">
-                            {/* Image slideshow */}
+
                             <div className="image-div relative w-full h-[450px] overflow-hidden rounded-md">
-  <AnimatePresence mode="wait" initial={false}>
-    <motion.img
-      key={imageList[currentImageIndex]}
-      src={imageList[currentImageIndex]}
-      alt={`user-${currentImageIndex}`}
-      initial={{ x: 300, opacity: 0 }}       // enters from right
-      animate={{ x: 0, opacity: 1 }}         // moves to center
-      exit={{ x: -300, opacity: 0 }}         // exits to left
-      transition={{
-        x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 }
-      }}
-      className="absolute top-0 left-0 w-full h-full object-contain rounded-md"
-    />
-  </AnimatePresence>
-</div>
+                                <AnimatePresence mode="wait" initial={false}>
+                                    <motion.img
+                                        key={imageList[currentImageIndex]}
+                                        src={imageList[currentImageIndex]}
+                                        alt={`user-${currentImageIndex}`}
+                                        initial={{ x: 300, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        exit={{ x: -300, opacity: 0 }}
+                                        transition={{
+                                            x: { type: "spring", stiffness: 300, damping: 30 },
+                                            opacity: { duration: 0.2 }
+                                        }}
+                                        className="absolute top-0 left-0 w-full h-full object-contain rounded-md"
+                                    />
+                                </AnimatePresence>
+                            </div>
 
 
-
-                            {/* Tags */}
                             <div className="tags-div flex gap-4 justify-start mt-[1.3%] ml-[2px]">
                                 <p className="pl-2 pr-2 bg-[#FFFFFFCC] inter-bold text-[14px] text-black rounded-sm">{user.os}</p>
                                 <p className="pl-2 pr-2 bg-[#FFFFFFCC] inter-bold text-[14px] text-black rounded-sm">{user.wm}</p>
                             </div>
 
-                            {/* Description */}
                             <div className="description-div flex flex-col mt-[2%] inter-bold text-[14px] ml-[2px]">
                                 <p className="mb-[2px]">Description: </p>
                                 <p className="mt-[2px] bg-[#1F1F23CC] p-3 pl-4 rounded-sm inter-light">{user.description}</p>
                             </div>
 
-                            {/* GitHub Link */}
                             <div className="github-div flex flex-col mt-[2%] inter-bold text-[14px] ml-[2px]">
                                 <p className="mb-[2px]">Github Repo Link: </p>
 
@@ -103,8 +97,8 @@ function Explore() {
                                             }}
                                             disabled={copiedIndex === index}
                                             className={`pl-2 pr-2 rounded-sm active:scale-95 disabled:cursor-not-allowed ${copiedIndex === index
-                                                    ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
-                                                    : 'bg-[#3B82F6] hover:cursor-pointer'
+                                                ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                                                : 'bg-[#3B82F6] hover:cursor-pointer'
                                                 }`}
                                         >
                                             {copiedIndex === index ? 'Copied' : 'Copy'}
