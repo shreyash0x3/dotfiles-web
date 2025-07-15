@@ -35,7 +35,7 @@ function Explore() {
                 });
                 return updated;
             });
-        }, 5000);
+        }, 6000);
 
         return () => clearInterval(interval);
     }, [users]);
@@ -49,7 +49,7 @@ function Explore() {
                     const currentImageIndex = imageIndexes[user.id] || 0;
 
                     return (
-                        <div key={user.id} className="bg-[#2A2A2E33] w-[750px] p-5 flex flex-col rounded-md text-[#D1D5DB] mb-[4%]">
+                        <div key={user.id} className="bg-[#2A2A2E33] w-[750px] p-5 flex flex-col rounded-md text-[#D1D5DB] mb-[4%] ">
 
                             <div className="image-div relative w-full h-[450px] overflow-hidden rounded-md">
                                 <AnimatePresence mode="wait" initial={false}>
@@ -77,7 +77,7 @@ function Explore() {
 
                             <div className="description-div flex flex-col mt-[2%] inter-bold text-[14px] ml-[2px]">
                                 <p className="mb-[2px]">Description: </p>
-                                <p className="mt-[2px] bg-[#1F1F23CC] p-3 pl-4 rounded-sm inter-light">{user.description}</p>
+                                <p className="mt-[2px] bg-[#1F1F23CC] p-3 pl-4 rounded-sm inter-light whitespace-pre-wrap">{user.description}</p>
                             </div>
 
                             <div className="github-div flex flex-col mt-[2%] inter-bold text-[14px] ml-[2px]">
