@@ -44,9 +44,9 @@ function Home() {
                                 Make it yours.</p>
                         </div>
                         <motion.div
-                            whileHover={{ scale: 1.3 }}
+                            whileHover={{ scale: 1.1 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                            className="mr-[16%] mix-blend-luminosity hover:mix-blend-normal hover:cursor-pointer"
+                            className="mr-[16%] mix-blend-luminosity hover:mix-blend-normal"
                         >
                             { /* Image by https://github.com/1amSimp1e/dots*/}
                             <img src={HyprRice} alt="riced-os-image" className="w-[600px] h-[350px] rounded-xl" />
