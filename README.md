@@ -10,3 +10,11 @@ Dotfiles Web is a lightweight React app for sharing dotfiles online. It’s simp
 
 ## Upload Your Dotfiles
 ![Upload Screenshot](https://i.ibb.co/7tG3PFhQ/screenshot-2025-11-12-11-50-01.png)
+
+
+## Design & Structural Decisions
+
+- Kept the UI simple so dotfiles are easy to read and share.
+- Organized code into small components instead of one large file.
+- Separated data handling from UI logic.
+- Used only necessary libraries to keep the project lightweight.
